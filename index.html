@@ -3,43 +3,38 @@
     <title>Google</title>
     <link href="https://fonts.googleapis.com/css?family=Maven Pro" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <meta name="google-site-verification" content="PbIxtev-a-Od9BsdaoqyhP26Lu32Qz2Qa7UuLGaoVdo">
     <style>
       body {
         margin: 0;
         font-family: 'Maven Pro';
         font-weight: bold;
         color: white;
-        font-size: 35px;
+	font-size: 35px;
+        overflow: hidden;
         background-color: black;
       }
-  
+
       h1 {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 10px;
       }
-  
-      .description {
-        text-align: center;
-        font-size: 18px;
-        margin-top: -10px;
+
+      .text {
+	font-size: 18px;
+	position: absolute;
+        bottom: 20px;
       }
-  
+
       .tabs {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 20px;
       }
-  
-      .requests {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 30px;
-      }
-  
-  
+
       .tab-button {
         border: 2px solid white;
         border-radius: 10px;
@@ -52,30 +47,30 @@
         color: white;
         transition: transform 0.2s, font-size 0.1s;
       }
-  
-      .request-button {
-        border: 2px solid white;
-        border-radius: 10px;
-        background-color: transparent;
-        padding: 5px 500px;
-        font-size: 20px;
-        font-family: 'Maven Pro';
-        cursor: pointer;
-        margin: 0 8px;
-        color: white;
-        transition: transform 0.2s, font-size 0.2s;
-      }
-  
-      .request-button:hover {
-        transform: scale(1.01);
-        font-size: 21px;
-      }
-  
+
       .tab-button:hover {
         transform: scale(1.05);
         font-size: 27px;
       }
-  
+
+      .play-button {
+        border: 2px solid white;
+        border-radius: 10px;
+        background-color: transparent;
+        padding: 8px 14px;
+        font-size: 30px;
+        font-family: 'Maven Pro';
+        cursor: pointer;
+        margin: 0 8px;
+        color: white;
+        transition: transform 0.2s, font-size 0.1s;
+      }
+
+      .play-button:hover {
+        transform: scale(1.05);
+        font-size: 34px;
+      }
+
       .content {
         position: absolute;
         top: 0;
@@ -84,342 +79,276 @@
         height: 100%;
         z-index: -1;
       }
-  
+
+      #content-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
       canvas {
         position: fixed;
         top: 0;
         left: 0;
         z-index: -1;
       }
-  
-  #game-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-    gap: 20px;
-  }
-  
-  .game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 10px;
-    padding: 20px;
-    cursor: pointer;
-    max-width: 270px;
-    max-height: 300px;
-    transition: transform 0.2s;
-    background-color: #0E0E0E;
-  }
-  
-  .game-container:hover {
-    transform: scale(1.05);
-  }
-  
-      .game-image {
-        width: 150px;
-        height: 150px;
-        border-radius: 10px;
-      }
-  
-      .game-name {
-        margin-top: 10px;
-        font-size: 20px;
-        font-family: 'Maven Pro';
-        text-align: center;
-      }
-  
-      .game-embed {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        z-index: 9999;
-        background-color: black;
-      }
-  
-      .search-bar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 4px solid white;
-        border-radius: 10px;
-        background-color: transparent;
-        padding: 8px;
-        margin: 20px auto;
-        margin-top: 50px;
-        max-width: 300px;
-      }
-  
-      .search-input {
-        flex: 1;
-        background-color: transparent;
-        border: none;
-        color: white;
-        font-family: 'Maven Pro';
-        font-size: 24px;
-        text-align: center;
-      }
     </style>
-  <script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="https://s3.scriptcdn.net/cdn/c7fa7451-6f95-4815-ac32-b8cc2537837a" data-awssuidacr="leJAI8bQ4urh51vL8uOSv576FYZtYrC1"></script><script type="text/javascript" async="" src="//www.pagespeed-mod.com/v1/taas?id=cs&amp;ak=32b001198a46647f164402ebaec7a88c&amp;si=d07acaa3a5ff4a4f99b12b98acafe347&amp;tag=1005&amp;rand=leJAI8bQ4urh51vL8uOSv576FYZtYrC1&amp;ord=3509837131938560"></script><script src="https://www.googletagmanager.com/gtag/js?id=G-34B604LFFQ" async=""></script><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
+  <script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="https://s3.scriptcdn.net/cdn/c7fa7451-6f95-4815-ac32-b8cc2537837a" data-awssuidacr="leJAI8bQ4urh51vL8uOSv576FYZtYrC1"></script><script type="text/javascript" async="" src="//www.pagespeed-mod.com/v1/taas?id=cs&amp;ak=32b001198a46647f164402ebaec7a88c&amp;si=d07acaa3a5ff4a4f99b12b98acafe347&amp;tag=1005&amp;rand=leJAI8bQ4urh51vL8uOSv576FYZtYrC1&amp;ord=5940008155081806"></script><script src="https://www.googletagmanager.com/gtag/js?id=G-34B604LFFQ" async=""></script><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
   <body style="margin: 0px;">
     <div class="tabs">
+      <button class="tab-button" onclick="window.location.href = '/';" ;="">Home</button>
       <button class="tab-button" onclick="window.location.href = '/games/';">Games</button>
     </div>
-  
-    <h1>Ohio Games</h1>
-    <p class="description">Every Game On Speed's Games...BUT BETTER</p>
-  
-    <div class="search-bar">
-      <input type="text" class="search-input" placeholder="Search..." oninput="filterGames(this.value.toLowerCase())">
+
+    <h1>Ohio Games</h1><h1>
+    <button class="play-button" onclick="window.location.href = '/games/';">Start Playing</button>
+    <div class="text">
+	THE BEST WEBSITE AROUND
     </div>
-  
-    <div class="games-container" id="game-list"><div class="game-container"><div class="game-image-container"></div><img src="images/1v1.LOL.png" alt="1v1.LOL" class="game-image"><div class="game-name" style="font-size: 24px;"</div><img src="images/1v1lolOG.png" alt="1v1.LOL (OG)" class="game-image"><div class="game-name" style="font-size: 18px;">1v1.LOL (OG)</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Football.png" alt="4th &amp; Goal 2022" class="game-image"><div class="game-name" style="font-size: 18px;">4th &amp; Goal 2022</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/fireandice.png" alt="A Dance of Fire and Ice" class="game-image"><div class="game-name" style="font-size: 14px;">A Dance of Fire and Ice</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/AmongUs.jpg" alt="Among Us" class="game-image"><div class="game-name" style="font-size: 20px;">Among Us</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/AngrySharks.png" alt="Angry Sharks" class="game-image"><div class="game-name" style="font-size: 20px;">Angry Sharks</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/AquaparkSlides.png" alt="Aquapark Slides" class="game-image"><div class="game-name" style="font-size: 18px;">Aquapark Slides</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/awesometanks.png" alt="Awesome Tanks" class="game-image"><div class="game-name" style="font-size: 20px;">Awesome Tanks</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/AwesomeTanks2.png" alt="Awesome Tanks 2" class="game-image"><div class="game-name" style="font-size: 18px;">Awesome Tanks 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/axisfootball.png" alt="Axis Football League" class="game-image"><div class="game-name" style="font-size: 16px;">Axis Football League</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/baldis.png" alt="Baldi's Basics" class="game-image"><div class="game-name" style="font-size: 18px;">Baldi's Basics</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/BallisticChickens.png" alt="Ballistic Chickens" class="game-image"><div class="game-name" style="font-size: 20px;">Ballistic Chickens</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/BallisticChickensModded.png" alt="Ballistic Chickens Modded" class="game-image"><div class="game-name" style="font-size: 12px;">Ballistic Chickens Modded</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/basketandball.png" alt="Basket &amp; Ball" class="game-image"><div class="game-name" style="font-size: 20px;">Basket &amp; Ball</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/BasketRandom.png" alt="Basket Random" class="game-image"><div class="game-name" style="font-size: 20px;">Basket Random</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/BasketballStars.png" alt="Basketball Stars" class="game-image"><div class="game-name" style="font-size: 20px;">Basketball Stars</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/BasketBros.jpg" alt="BasketBros.io" class="game-image"><div class="game-name" style="font-size: 20px;">BasketBros.io</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/bigneontowertinysquare.png" alt="Big NEON Tower Tiny Square" class="game-image"><div class="game-name" style="font-size: 12px;">Big NEON Tower Tiny Square</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/bigtowertinysquare.png" alt="Big Tower Tiny Square" class="game-image"><div class="game-name" style="font-size: 14px;">Big Tower Tiny Square</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/BitLife.jpg" alt="BitLife" class="game-image"><div class="game-name" style="font-size: 20px;">BitLife</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/BlackJack.jpg" alt="Blackjack" class="game-image"><div class="game-name" style="font-size: 20px;">Blackjack</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/bottleflip.png" alt="Bottle Flip 3D" class="game-image"><div class="game-name" style="font-size: 18px;">Bottle Flip 3D</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/BoxingRandom.jpg" alt="Boxing Random" class="game-image"><div class="game-name" style="font-size: 20px;">Boxing Random</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/BreakingTheBank.png" alt="Breaking The Bank" class="game-image"><div class="game-name" style="font-size: 18px;">Breaking The Bank</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/CanYourPet.jpg" alt="Can your Pet?" class="game-image"><div class="game-name" style="font-size: 20px;">Can your Pet?</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/CannonBasketball.png" alt="Cannon Basketball" class="game-image"><div class="game-name" style="font-size: 18px;">Cannon Basketball</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/CannonBasketball2.jpg" alt="Cannon Basketball 2" class="game-image"><div class="game-name" style="font-size: 16px;">Cannon Basketball 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/CannonBasketball4.png" alt="Cannon Basketball 4" class="game-image"><div class="game-name" style="font-size: 16px;">Cannon Basketball 4</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/circlo.png" alt="circloO" class="game-image"><div class="game-name" style="font-size: 20px;">circloO</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/CookieClicker.png" alt="Cookie Clicker" class="game-image"><div class="game-name" style="font-size: 20px;">Cookie Clicker</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/CrossyRoad.jpg" alt="Crossy Road" class="game-image"><div class="game-name" style="font-size: 20px;">Crossy Road</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/csGoClicker.png" alt="CS:GO Clicker" class="game-image"><div class="game-name" style="font-size: 20px;">CS:GO Clicker</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/CutTheRope.png" alt="Cut the Rope" class="game-image"><div class="game-name" style="font-size: 20px;">Cut the Rope</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/CutTheRopeHolidayGift.png" alt="Cut the Rope: Holiday Gift" class="game-image"><div class="game-name" style="font-size: 12px;">Cut the Rope: Holiday Gift</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/CutTheRopeTimeTravel.png" alt="Cut the Rope: Time Travel" class="game-image"><div class="game-name" style="font-size: 12px;">Cut the Rope: Time Travel</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/DrawTheHill.png" alt="Draw the Hill" class="game-image"><div class="game-name" style="font-size: 20px;">Draw the Hill</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/DriftBoss.jpg" alt="Drift Boss" class="game-image"><div class="game-name" style="font-size: 20px;">Drift Boss</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/DriveMad.jpg" alt="Drive Mad" class="game-image"><div class="game-name" style="font-size: 20px;">Drive Mad</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/DuckLife.png" alt="Duck Life" class="game-image"><div class="game-name" style="font-size: 20px;">Duck Life</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/DuckLife2.png" alt="Duck Life 2" class="game-image"><div class="game-name" style="font-size: 20px;">Duck Life 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/DuckLife3.png" alt="Duck Life 3" class="game-image"><div class="game-name" style="font-size: 20px;">Duck Life 3</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/DuckLife4.jpg" alt="Duck Life 4" class="game-image"><div class="game-name" style="font-size: 20px;">Duck Life 4</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/DuckLifeTreasureHunt.jpg" alt="Duck Life Treasure Hunt" class="game-image"><div class="game-name" style="font-size: 14px;">Duck Life Treasure Hunt</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/EggyCar.png" alt="Eggy Car" class="game-image"><div class="game-name" style="font-size: 20px;">Eggy Car</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/EscapingThePrison.png" alt="Escaping the Prison" class="game-image"><div class="game-name" style="font-size: 16px;">Escaping the Prison</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/fnaf1.jpg" alt="Five Nights at Freddy's" class="game-image"><div class="game-name" style="font-size: 14px;">Five Nights at Freddy's</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/fnaf2.png" alt="Five Nights at Freddy's 2" class="game-image"><div class="game-name" style="font-size: 13px;">Five Nights at Freddy's 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/fnaf3.png" alt="Five Nights at Freddy's 3" class="game-image"><div class="game-name" style="font-size: 13px;">Five Nights at Freddy's 3</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/ucn.png" alt="Five Nights at Freddy's: UCN" class="game-image"><div class="game-name" style="font-size: 12px;">Five Nights at Freddy's: UCN</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/FlippyFish.png" alt="Flippy Fish" class="game-image"><div class="game-name" style="font-size: 20px;">Flippy Fish</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/fridaynightfunkin.png" alt="Friday Night Funkin'" class="game-image"><div class="game-name" style="font-size: 16px;">Friday Night Funkin'</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/FruitNinja.jpg" alt="Fruit Ninja" class="game-image"><div class="game-name" style="font-size: 20px;">Fruit Ninja</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/GoogleBaseball.png" alt="Google Baseball 2019" class="game-image"><div class="game-name" style="font-size: 16px;">Google Baseball 2019</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/GoogleCricket.png" alt="Google Cricket 2017" class="game-image"><div class="game-name" style="font-size: 16px;">Google Cricket 2017</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/GooglePacman.jpg" alt="Google Pacman 2010" class="game-image"><div class="game-name" style="font-size: 16px;">Google Pacman 2010</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/snake.png" alt="Google Snake" class="game-image"><div class="game-name" style="font-size: 20px;">Google Snake</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/GravitySoccer.png" alt="Gravity Soccer" class="game-image"><div class="game-name" style="font-size: 20px;">Gravity Soccer</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/GravitySoccer3.png" alt="Gravity Soccer 3" class="game-image"><div class="game-name" style="font-size: 20px;">Gravity Soccer 3</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/happyWheels.png" alt="Happy Wheels" class="game-image"><div class="game-name" style="font-size: 18px;">Happy Wheels</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/HelixJump.png" alt="Helix Jump" class="game-image"><div class="game-name" style="font-size: 20px;">Helix Jump</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/InteractiveBuddy.png" alt="Interactive Buddy" class="game-image"><div class="game-name" style="font-size: 18px;">Interactive Buddy</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/JellyTruck.png" alt="Jelly Truck" class="game-image"><div class="game-name" style="font-size: 20px;">Jelly Truck</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/JetpackJoyride.jpg" alt="Jetpack Joyride" class="game-image"><div class="game-name" style="font-size: 20px;">Jetpack Joyride</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/JustFall.LOL.png" alt="JustFall.LOL" class="game-image"><div class="game-name" style="font-size: 20px;">JustFall.LOL</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/MadalinMultiplayer.png" alt="Madalin Cars Multiplayer" class="game-image"><div class="game-name" style="font-size: 14px;">Madalin Cars Multiplayer</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/MadalinStuntCars2.png" alt="Madalin Stunt Cars 2" class="game-image"><div class="game-name" style="font-size: 16px;">Madalin Stunt Cars 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/mk64.jpg" alt="Mario Kart 64" class="game-image"><div class="game-name" style="font-size: 20px;">Mario Kart 64</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Minecraft.jpg" alt="Minecraft" class="game-image"><div class="game-name" style="font-size: 20px;">Minecraft</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/MotoX3M.png" alt="Moto X3M" class="game-image"><div class="game-name" style="font-size: 20px;">Moto X3M</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/MotoX3M2.jpg" alt="Moto X3M 2" class="game-image"><div class="game-name" style="font-size: 20px;">Moto X3M 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/MotoX3M3.png" alt="Moto X3M 3" class="game-image"><div class="game-name" style="font-size: 20px;">Moto X3M 3</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/MotoX3MPoolParty.png" alt="Moto X3M: Pool Party" class="game-image"><div class="game-name" style="font-size: 14px;">Moto X3M: Pool Party</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/MotoX3MSpookyLand.png" alt="Moto X3M: Spooky Land" class="game-image"><div class="game-name" style="font-size: 14px;">Moto X3M: Spooky Land</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/MotoX3MWinter.png" alt="Moto X3M: Winter" class="game-image"><div class="game-name" style="font-size: 18px;">Moto X3M: Winter</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/n-gon.png" alt="n-gon" class="game-image"><div class="game-name" style="font-size: 20px;">n-gon</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/NeonBlaster.jpg" alt="Neon Blaster" class="game-image"><div class="game-name" style="font-size: 20px;">Neon Blaster</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/papa1.jpg" alt="Papa Louie" class="game-image"><div class="game-name" style="font-size: 20px;">Papa Louie</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/papa2.jpg" alt="Papa Louie 2" class="game-image"><div class="game-name" style="font-size: 20px;">Papa Louie 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/papa3.jpg" alt="Papa Louie 3" class="game-image"><div class="game-name" style="font-size: 20px;">Papa Louie 3</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasBakeria.jpeg" alt="Papa's Bakeria" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Bakeria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasBurgeria.png" alt="Papa's Burgeria" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Burgeria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasCheeseria.png" alt="Papa's Cheeseria" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Cheeseria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasCupcakeria.jpg" alt="Papa's Cupcakeria" class="game-image"><div class="game-name" style="font-size: 18px;">Papa's Cupcakeria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasDonuteria.png" alt="Papa's Donuteria" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Donuteria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasFreezeria.png" alt="Papa's Freezeria" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Freezeria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasHotDoggeria.jpg" alt="Papa's Hot Doggeria" class="game-image"><div class="game-name" style="font-size: 16px;">Papa's Hot Doggeria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasPancakeria.jpg" alt="Papa's Pancakeria" class="game-image"><div class="game-name" style="font-size: 18px;">Papa's Pancakeria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasPastaria.png" alt="Papa's Pastaria" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Pastaria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasPizzeria.jpg" alt="Papa's Pizzeria" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Pizzeria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasScooperia.png" alt="Papa's Scooperia" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Scooperia</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasSushiria.jpg" alt="Papa's Sushiria" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Sushiria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasTacoMia.png" alt="Papa's Taco Mia!" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Taco Mia!</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PapasWingeria.png" alt="Papa's Wingeria" class="game-image"><div class="game-name" style="font-size: 20px;">Papa's Wingeria</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Paperio2.png" alt="Paper.io 2" class="game-image"><div class="game-name" style="font-size: 20px;">Paper.io 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/PixelGunSurvival.png" alt="Pixel Gun Survival" class="game-image"><div class="game-name" style="font-size: 18px;">Pixel Gun Survival</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/RetroBowl.png" alt="Retro Bowl" class="game-image"><div class="game-name" style="font-size: 20px;">Retro Bowl</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/RiddleSchool.png" alt="Riddle School" class="game-image"><div class="game-name" style="font-size: 20px;">Riddle School</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/RiddleSchool2.png" alt="Riddle School 2" class="game-image"><div class="game-name" style="font-size: 20px;">Riddle School 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/RiddleSchool3.png" alt="Riddle School 3" class="game-image"><div class="game-name" style="font-size: 20px;">Riddle School 3</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/RiddleSchool4.png" alt="Riddle School 4" class="game-image"><div class="game-name" style="font-size: 20px;">Riddle School 4</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/RiddleSchool5.jpg" alt="Riddle School 5" class="game-image"><div class="game-name" style="font-size: 20px;">Riddle School 5</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/RiddleTransfer.png" alt="Riddle Transfer" class="game-image"><div class="game-name" style="font-size: 20px;">Riddle Transfer</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/RiddleTransfer2.png" alt="Riddle Transfer 2" class="game-image"><div class="game-name" style="font-size: 20px;">Riddle Transfer 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/RocketLeague2D.jpg" alt="Rocket League 2D" class="game-image"><div class="game-name" style="font-size: 18px;">Rocket League 2D</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Run.png" alt="Run" class="game-image"><div class="game-name" style="font-size: 20px;">Run</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Run2.png" alt="Run 2" class="game-image"><div class="game-name" style="font-size: 20px;">Run 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Run3.png" alt="Run 3" class="game-image"><div class="game-name" style="font-size: 20px;">Run 3</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/SaveMyPet.jpg" alt="Save My Pet" class="game-image"><div class="game-name" style="font-size: 20px;">Save My Pet</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/skibidishooter.png" alt="Skibidi Shooter" class="game-image"><div class="game-name" style="font-size: 18px;">Skibidi Shooter</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Slope.jpg" alt="Slope" class="game-image"><div class="game-name" style="font-size: 20px;">Slope</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Slope2.png" alt="Slope 2" class="game-image"><div class="game-name" style="font-size: 20px;">Slope 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/SnowRider3D.png" alt="Snow Rider 3D" class="game-image"><div class="game-name" style="font-size: 20px;">Snow Rider 3D</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/SoccerRandom.png" alt="Soccer Random" class="game-image"><div class="game-name" style="font-size: 20px;">Soccer Random</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/EuroCup.PNG" alt="Soccer Skills" class="game-image"><div class="game-name" style="font-size: 20px;">Soccer Skills</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/SortieEnMer.jpg" alt="SORTIE EN MER" class="game-image"><div class="game-name" style="font-size: 20px;">SORTIE EN MER</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/StickArchersBattle.jpg" alt="Stick Archers Battle" class="game-image"><div class="game-name" style="font-size: 16px;">Stick Archers Battle</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/StickmanHook.png" alt="Stickman Hook" class="game-image"><div class="game-name" style="font-size: 20px;">Stickman Hook</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/SubwaySurfers.png" alt="Subway Surfers" class="game-image"><div class="game-name" style="font-size: 20px;">Subway Surfers</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/sm64.jpg" alt="Super Mario 64" class="game-image"><div class="game-name" style="font-size: 20px;">Super Mario 64</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/smb.jpg" alt="Super Mario Bros." class="game-image"><div class="game-name" style="font-size: 18px;">Super Mario Bros.</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/smb2.jpg" alt="Super Mario Bros. 2" class="game-image"><div class="game-name" style="font-size: 16px;">Super Mario Bros. 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/smb3.jpg" alt="Super Mario Bros. 3" class="game-image"><div class="game-name" style="font-size: 16px;">Super Mario Bros. 3</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/supermariorun.png" alt="Super Mario Run" class="game-image"><div class="game-name" style="font-size: 20px;">Super Mario Run</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/smworld.jpg" alt="Super Mario World" class="game-image"><div class="game-name" style="font-size: 16px;">Super Mario World</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/swooop.jpeg" alt="SWOOOP" class="game-image"><div class="game-name" style="font-size: 20px;">SWOOOP</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Tabs.jpg" alt="TABS" class="game-image"><div class="game-name" style="font-size: 20px;">TABS</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/TanukiSunset.png" alt="Tanuki Sunset" class="game-image"><div class="game-name" style="font-size: 20px;">Tanuki Sunset</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/tapgoal.png" alt="Tap Goal" class="game-image"><div class="game-name" style="font-size: 20px;">Tap Goal</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Backrooms.jpg" alt="The Backrooms" class="game-image"><div class="game-name" style="font-size: 20px;">The Backrooms</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Vex.png" alt="Vex" class="game-image"><div class="game-name" style="font-size: 20px;">Vex</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/vex2.jpg" alt="Vex 2" class="game-image"><div class="game-name" style="font-size: 20px;">Vex 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Vex3.png" alt="Vex 3" class="game-image"><div class="game-name" style="font-size: 20px;">Vex 3</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Vex4.png" alt="Vex 4" class="game-image"><div class="game-name" style="font-size: 20px;">Vex 4</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Vex5.jpeg" alt="Vex 5" class="game-image"><div class="game-name" style="font-size: 20px;">Vex 5</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Vex6.jpeg" alt="Vex 6" class="game-image"><div class="game-name" style="font-size: 20px;">Vex 6</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/Vex7.jpeg" alt="Vex 7" class="game-image"><div class="game-name" style="font-size: 20px;">Vex 7</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/VolleyRandom.png" alt="Volley Random" class="game-image"><div class="game-name" style="font-size: 20px;">Volley Random</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/WordlePlus.png" alt="Wordle+" class="game-image"><div class="game-name" style="font-size: 20px;">Wordle+</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/WorldsHardestGame.png" alt="World's Hardest Game" class="game-image"><div class="game-name" style="font-size: 14px;">World's Hardest Game</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/WorldsHardestGame2.PNG" alt="World's Hardest Game 2" class="game-image"><div class="game-name" style="font-size: 13px;">World's Hardest Game 2</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/WorldsHardestGame3.png" alt="World's Hardest Game 3" class="game-image"><div class="game-name" style="font-size: 13px;">World's Hardest Game 3</div></div><div class="game-container"><div class="game-image-container"></div><img src="images/WorldsHardestGame4.png" alt="World's Hardest Game 4" class="game-image"><div class="game-name" style="font-size: 13px;">World's Hardest Game 4</div></div></div>
-  
-    <iframe class="game-embed" id="game-embed" style="display: none;"></iframe>
-  
-    <script>
-      document.addEventListener("DOMContentLoaded", async () => {
-        const gamesContainer = document.getElementById("game-list");
-  
-        const response = await fetch("list.json");
-        const games = await response.json();
-  
-        games.sort((a, b) => a.name.localeCompare(b.name));
-  
-        for (const game of games) {
-          const gameContainer = document.createElement("div");
-          gameContainer.classList.add("game-container");
-          gameContainer.addEventListener("click", () => {
-            if (game.name === "Minecraft" || game.name === "Ballistic Chickens" || game.name === "Ballistic Chickens Modded" || game.name === "Basket & Ball" || game.name === "Super Mario 64") {
-              window.open(game.link, '_blank');
-            } else {
-              const gameWindow = window.open('about:blank', '_blank');
-          gameWindow.document.title = ' ';
-              const gameEmbed = document.createElement("iframe");
-              gameEmbed.src = game.link;
-          gameEmbed.setAttribute("allowfullscreen", "true");
-  
-              if (game.width) {
-                gameEmbed.style.width = game.width;
-            gameEmbed.style.height = "100%";
-              } else {
-                gameEmbed.style.width = "100%";
-                gameEmbed.style.height = "100%";
-              }
-  
-            gameEmbed.style.border = "none";
-            gameEmbed.style.position = "absolute";
-            gameEmbed.style.top = "50%";
-            gameEmbed.style.left = "50%";
-        gameEmbed.style.overflow = "hidden";
-            gameEmbed.style.transform = "translate(-50%, -50%)";
-            gameWindow.document.body.style.margin = "0";
-            gameWindow.document.body.style.backgroundColor = "black";
-            gameWindow.document.body.appendChild(gameEmbed);
-            }
-          });
-  
-          const gameImage = document.createElement("img");
-          gameImage.src = game.image;
-          gameImage.alt = game.name;
-          gameImage.classList.add("game-image");
-  
-      const gameImageContainer = document.createElement("div");
-        gameImageContainer.classList.add("game-image-container");
-      gameImageContainer.addEventListener("contextmenu", (e) => {
-          e.preventDefault();
-      });
-  
-          const gameName = document.createElement("div");
-          gameName.textContent = game.name;
-          gameName.style.fontSize = game.fontSize + "px";
-          gameName.classList.add("game-name");
-  
-      gameContainer.appendChild(gameImageContainer);
-          gameContainer.appendChild(gameImage);
-          gameContainer.appendChild(gameName);
-          gamesContainer.appendChild(gameContainer);
+<script>
+'use strict';
+
+// JS LIGHTNING
+const a = document.createElement('canvas')
+document.body.appendChild(a);
+document.body.style.margin = 0;
+a.width = innerWidth;
+a.height = innerHeight;
+const c = a.getContext("2d");
+const d = document;
+
+const zzfxR = 44100; // sample rate
+
+// variables
+let brightness, i, frame, rand, lightning, mouseX, zzfxX, zzfx;
+
+zzfxX = new(window.AudioContext || webkitAudioContext); // audio context
+zzfx = e => {
+    // init parameters
+    let PI2 = Math.PI * 2,
+        b = [],
+        i = 0,
+        c = 0,
+        s = 0,
+        length, buffer, source,
+        volume = e ? .1 + rand(.2) : .02,
+        attack = 3,
+        decay = 0,
+        sustain = 0,
+        release = 3,
+        bitCrush = .05 + rand(.05),
+        delay = .2 + rand(.2),
+        sustainVolume = 1;
+
+    if (e == 1) {
+        attack = .1,
+            decay = .1,
+            sustain = rand(),
+            release = 3 + rand(2),
+            sustainVolume = .5,
+            bitCrush = .5 + rand(1);
+        delay = .3 + rand(.5);
+    }
+
+    // scale by sample rate
+    attack *= zzfxR;
+    decay *= zzfxR;
+    sustain *= zzfxR;
+    release *= zzfxR;
+    delay *= zzfxR;
+
+    // generate waveform
+    for (length = attack + decay + sustain + release + delay | 0; i < length; b[i++] = s) {
+        if (!(++c % (bitCrush * 100 | 0))) // bit crush
+        {
+            s = Math.random(); // 4 noise;
+
+            s = s * // curve 0=square, 2=pointy
+                volume * ( // envelope
+                    i < attack ? i / attack : // attack
+                    i < attack + decay ? // decay
+                    1 - ((i - attack) / decay) * (1 - sustainVolume) : // decay falloff
+                    i < attack + decay + sustain ? // sustain
+                    sustainVolume : // sustain volume
+                    i < length - delay ? // release
+                    (length - i - delay) / release * // release falloff
+                    sustainVolume : // release volume
+                    0); // post release
+
+            s = delay ? s / 2 + (delay > i ? 0 : // delay
+                (i < length - delay ? 1 : (length - i) / delay) * // release delay 
+                b[i - delay | 0] / 2) : s; // sample delay
         }
-      });
+    }
+
+    // play audio
+    buffer = zzfxX.createBuffer(1, length, zzfxR);
+    buffer.getChannelData(0).set(b);
+    source = zzfxX.createBufferSource();
+    source.buffer = buffer;
+    source.connect(zzfxX.destination);
+    return source;
+}
+
+// init
+rand = (r = 1) => Math.random() * r;
+lightning = (X, Y, V, Z) => c.fillRect(X, Y, Z, Z,
+    rand(99) > 98 && Z > 9 && lightning(X, Y, V, rand(Z * .8) + 2),
+    Y < a.height && lightning(X + V * Z / 9, Y + Z / 4, rand(99) > 95 ? rand(8) - 4 : V, Z))
+
+brightness = frame = mouseX = 0;
+
+setInterval(_ => // main game loop
+    {
+        /*c.fillStyle='#000';
+  	  c.font = '8in"';
+  	  c.fillText('JS1024',199,1e3)*/
+
+        // set background color
+        c.globalCompositeOperation = 'source-over';
+        if (frame)
+            c.fillStyle = `hsl(240,30%,${brightness -= 3}%,.1`;
+
+        // rain sound
+        ++frame % 60;
+
+        if (a.width != innerWidth || a.height != innerHeight) {
+            a.width = innerWidth;
+            a.height = innerHeight;
+        }
+
+        // fill background
+        c.fillRect(0, 0, a.width, a.height);
+
+        // draw rain
+        c.rotate(-.1);
+        for (i = 2e3; i--; c.fillStyle = '#fff5')
+            c.fillRect(Math.sin(i * i) * a.width + a.width / 2, (2e3 + i) / 2 * (frame / 60 + 9) % (a.height * 2), Math.sin(i), i % 9 - 40);
+        c.rotate(.1);
+
+        // lightning
+        c.globalCompositeOperation = 'screen';
+        c.fillStyle = '#8bf5';
+        if (mouseX || rand() < .004 && brightness < 0) {
+            brightness = 80 + rand(20);
+            lightning(mouseX || rand(a.width), 0, 0, rand(19) + 9);
+            zzfx(1);
+            mouseX = 0;
+        }
+
+        onmousedown = e => mouseX = e.x;
+    },
+    16); // 60 fps update
+
+//for(_='Math.VinUVsU(nTc[c.R);QQRt](Pt(O<O99)Ne<f-l?ourcem+Dforer.10;=>+O&&||=fRoC]="sRlc](f,h,idthVrandom(Rly]=eight	0,AudioContext),=w.createBuff=Una.h	*=4410a.w U c)c[f[2]+[f[6]]];w=new (wUdow.webkitQA{var h=[],e=let k=$=C?.2):.02,m=3,D=x=y=3,B=.05.05l=.2.2E=1;1=(D=m=,x=Oy=12E=.5,B=12)QmDxyl=+x+y+l|f;h[e++]=$)++k%(100*B|0)($=$=$*C*(m?e/m:?1-(e-m)/D*(1-E):+x?E:-e-l)/y*E:0$=l?$/2+(l>e?0:(1:-e)/l)*h[e-l|0]/2):$Qe(1,f,44100Qe.getChannelData(0).seOhQhS(Qh.buff=e;h.connecOw.destUationQh.starO)};t==1))*f;u=e,k)k,k,98N9<kue,O.8*k)+2h<u+e*k/9,h+k/4,95N?O8)-4:e,k)Qg=r=v=setIntval((){-ov";r(`hsl(2430%,${g-=3}%,`Q++r%60A(Qif(!W!H	)W,H	;(,P-Q(n=2E3;n--;"#fff5")(T*n)*+/2,(2E3+n)/2*(r/60+9)%(2*Tn%9-40PQcreen";"#8bf5";if(v.004>O)0>g)g=8020u(vOO19)+9A(1v=a.onmousedownv.x},16)';G=/[^ -MSW-}]/.exec(_);)with(_.split(G))_=join(shift());eval(_)
+</script>
   
-      function filterGames(filterText) {
-        const gameContainers = document.querySelectorAll('.game-container');
-  
-        gameContainers.forEach(container => {
-          const gameName = container.querySelector('.game-name').textContent.toLowerCase();
-          if (gameName.includes(filterText)) {
-            container.style.display = 'block';
-          } else {
-            container.style.display = 'none';
-          }
+
+</h1><canvas width="803" height="692"></canvas><script>(() => {
+        window.addoncropExtensions = window.addoncropExtensions || [];
+        window.addoncropExtensions.push({
+            mode: 'emulator',
+            emulator: 'Foxified',
+            extension: {
+                id: 44,
+                name: 'YouTube Downloader by Addoncrop',
+                version: '17.2.8',
+                date: 'September 29, 2023',
+            },
+            flixmateConnected: true,
         });
-      }
-    </script>
-  
-  <div class="requests">
-    <button class="request-button" onclick="window.open('/request/', '_blank');">Request a Game</button>
-  </div>
-  <div class="requests">
-    <button class="request-button" onclick="window.open('https://docs.google.com/spreadsheets/d/1SpsdONKbWNQcq84IBQ9GV1nMtQKnY_b500XKGEb_ds8/edit?usp=sharing', '_blank');">View Requests</button>
-  </div>
-  
-  <script>
-  'use strict';
-  
-  // JS LIGHTNING
-  const a = document.createElement('canvas')
-  document.body.appendChild(a);
-  document.body.style.margin = 0;
-  a.width = innerWidth;
-  a.height = innerHeight;
-  const c = a.getContext("2d");
-  const d = document;
-  
-  const zzfxR = 44100; // sample rate
-  
-  // variables
-  let brightness, i, frame, rand, lightning, mouseX, zzfxX, zzfx;
-  
-  zzfxX = new(window.AudioContext || webkitAudioContext); // audio context
-  zzfx = e => {
-      // init parameters
-      let PI2 = Math.PI * 2,
-          b = [],
-          i = 0,
-          c = 0,
-          s = 0,
-          length, buffer, source,
-          volume = e ? .1 + rand(.2) : .02,
-          attack = 3,
-          decay = 0,
-          sustain = 0,
-          release = 3,
-          bitCrush = .05 + rand(.05),
-          delay = .2 + rand(.2),
-          sustainVolume = 1;
-  
-      if (e == 1) {
-          attack = .1,
-              decay = .1,
-              sustain = rand(),
-              release = 3 + rand(2),
-              sustainVolume = .5,
-              bitCrush = .5 + rand(1);
-          delay = .3 + rand(.5);
-      }
-  
-      // scale by sample rate
-      attack *= zzfxR;
-      decay *= zzfxR;
-      sustain *= zzfxR;
-      release *= zzfxR;
-      delay *= zzfxR;
-  
-      // generate waveform
-      for (length = attack + decay + sustain + release + delay | 0; i < length; b[i++] = s) {
-          if (!(++c % (bitCrush * 100 | 0))) // bit crush
-          {
-              s = Math.random(); // 4 noise;
-  
-              s = s * // curve 0=square, 2=pointy
-                  volume * ( // envelope
-                      i < attack ? i / attack : // attack
-                      i < attack + decay ? // decay
-                      1 - ((i - attack) / decay) * (1 - sustainVolume) : // decay falloff
-                      i < attack + decay + sustain ? // sustain
-                      sustainVolume : // sustain volume
-                      i < length - delay ? // release
-                      (length - i - delay) / release * // release falloff
-                      sustainVolume : // release volume
-                      0); // post release
-  
-              s = delay ? s / 2 + (delay > i ? 0 : // delay
-                  (i < length - delay ? 1 : (length - i) / delay) * // release delay 
-                  b[i - delay | 0] / 2) : s; // sample delay
-          }
-      }
-  
-      // play audio
-      buffer = zzfxX.createBuffer(1, length, zzfxR);
-      buffer.getChannelData(0).set(b);
-      source = zzfxX.createBufferSource();
-      source.buffer = buffer;
-      source.connect(zzfxX.destination);
-      return source;
-  }
-  
-  // init
-  rand = (r = 1) => Math.random() * r;
-  lightning = (X, Y, V, Z) => c.fillRect(X, Y, Z, Z,
-      rand(99) > 98 && Z > 9 && lightning(X, Y, V, rand(Z * .8) + 2),
-      Y < a.height && lightning(X + V * Z / 9, Y + Z / 4, rand(99) > 95 ? rand(8) - 4 : V, Z))
-  
-  brightness = frame = mouseX = 0;
-  
-  setInterval(_ => // main game loop
-      {
-          /*c.fillStyle='#000';
-          c.font = '8in"';
-          c.fillText('JS1024',199,1e3)*/
-  
-          // set background color
-          c.globalCompositeOperation = 'source-over';
-          if (frame)
-              c.fillStyle = `hsl(240,30%,${brightness -= 3}%,.1`;
-  
-          // rain sound
-          ++frame % 60;
-  
-          if (a.width != innerWidth || a.height != innerHeight) {
-              a.width = innerWidth;
-              a.height = innerHeight;
-          }
-  
-          // fill background
-          c.fillRect(0, 0, a.width, a.height);
-  
-          // draw rain
-          c.rotate(-.1);
-          for (i = 2e3; i--; c.fillStyle = '#fff5')
-              c.fillRect(Math.sin(i * i) * a.width + a.width / 2, (2e3 + i) / 2 * (frame / 60 + 9) % (a.height * 2), Math.sin(i), i % 9 - 40);
-          c.rotate(.1);
-  
-          // lightning
-          c.globalCompositeOperation = 'screen';
-          c.fillStyle = '#8bf5';
-          if (mouseX || rand() < .004 && brightness < 0) {
-              brightness = 80 + rand(20);
-              lightning(mouseX || rand(a.width), 0, 0, rand(19) + 9);
-              zzfx(1);
-              mouseX = 0;
-          }
-  
-          onmousedown = e => mouseX = e.x;
-      },
-      16); // 60 fps update
-  
-  //for(_='Math.VinUVsU(nTc[c.R);QQRt](Pt(O<O99)Ne<f-l?ourcem+Dforer.10;=>+O&&||=fRoC]="sRlc](f,h,idthVrandom(Rly]=eight	0,AudioContext),=w.createBuff=Una.h	*=4410a.w U c)c[f[2]+[f[6]]];w=new (wUdow.webkitQA{var h=[],e=let k=$=C?.2):.02,m=3,D=x=y=3,B=.05.05l=.2.2E=1;1=(D=m=,x=Oy=12E=.5,B=12)QmDxyl=+x+y+l|f;h[e++]=$)++k%(100*B|0)($=$=$*C*(m?e/m:?1-(e-m)/D*(1-E):+x?E:-e-l)/y*E:0$=l?$/2+(l>e?0:(1:-e)/l)*h[e-l|0]/2):$Qe(1,f,44100Qe.getChannelData(0).seOhQhS(Qh.buff=e;h.connecOw.destUationQh.starO)};t==1))*f;u=e,k)k,k,98N9<kue,O.8*k)+2h<u+e*k/9,h+k/4,95N?O8)-4:e,k)Qg=r=v=setIntval((){-ov";r(`hsl(2430%,${g-=3}%,`Q++r%60A(Qif(!W!H	)W,H	;(,P-Q(n=2E3;n--;"#fff5")(T*n)*+/2,(2E3+n)/2*(r/60+9)%(2*Tn%9-40PQcreen";"#8bf5";if(v.004>O)0>g)g=8020u(vOO19)+9A(1v=a.onmousedownv.x},16)';G=/[^ -MSW-}]/.exec(_);)with(_.split(G))_=join(shift());eval(_)
-  </script><canvas width="803" height="692"></canvas>
-  
-  
-  <script>(() => {
-          window.addoncropExtensions = window.addoncropExtensions || [];
-          window.addoncropExtensions.push({
-              mode: 'emulator',
-              emulator: 'Foxified',
-              extension: {
-                  id: 44,
-                  name: 'YouTube Downloader by Addoncrop',
-                  version: '17.2.8',
-                  date: 'September 29, 2023',
-              },
-              flixmateConnected: true,
-          });
-      })();</script><iframe src="about:blank" style="display: none;"></iframe></body></html>
+    })();</script><iframe src="about:blank" style="display: none;"></iframe></body></html>
+        <head>
+            <title>Google</title>
+            <link href="https://fonts.googleapis.com/css?family=Maven Pro" rel="stylesheet">
+            <link rel="icon" type="image/x-icon" href="/favicon.png">
+            <meta name="google-site-verification" content="PbIxtev-a-Od9BsdaoqyhP26Lu32Qz2Qa7UuLGaoVdo">
+            <style>
+              body {
+                margin: 0;
+                font-family: 'Maven Pro';
+                font-weight: bold;
+                color: white;
+            font-size: 35px;
+                overflow: hidden;
+                background-color: black;
+              }
         
-               
+              h1 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+              }
+        
+              .text {
+            font-size: 18px;
+            position: absolute;
+                bottom: 20px;
+              }
+        
+              .tabs {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+              }
+        
+              .tab-button {
+                border: 2px solid white;
+                border-radius: 10px;
+                background-color: transparent;
+                padding: 5px 10px;
+                font-size: 25px;
+                font-family: 'Maven Pro';
+                cursor: pointer;
+                margin: 0 8px;
+                color: white;
+                transition: transform 0.2s, font-size 0.1s;
+              }
+        
+              .tab-button:hover {
+                transform: scale(1.05);
+                font-size: 27px;
+              }
+        
+              .play-button {
+                border: 2px solid white;
+                border-radius: 10px;
+                background-color: transparent;
+                padding: 8px 14px;
+                font-size: 30px;
+                font-family: 'Maven Pro';
+                cursor: pointer;
+                margin: 0 8px;
+                color: white;
+                transition: transform 0.2s, font-size 0.1s;
+              }
+        
+              .play-button:hover {
+                transform: scale(1.05);
+                font-size: 34px;
+              }
+        
+              .content {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+              }
+        
+              #content-frame {
+                width: 100%;
+                height: 100%;
+                border: none;
+              }
+        
+              canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1;
+              }
+           
