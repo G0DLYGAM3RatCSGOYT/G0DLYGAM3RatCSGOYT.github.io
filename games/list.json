@@ -792,6 +792,11 @@
     "image": "images/fnaf4.png"
   },
   {
+	"name": "Five Nights at Freddy's: Sister Location",
+    "fontSize": 13,
+    "link": "https://ubg98.github.io/FNAF5",
+    "image": "images/fnaf5.png"
+  {
     "name": "Five Nights at Freddy's: UCN",
     "fontSize": 12,
     "link": "https://cornandbutter.github.io/fnaf/ucn/index.html",
