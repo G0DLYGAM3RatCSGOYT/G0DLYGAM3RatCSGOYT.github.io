@@ -792,7 +792,7 @@
     "image": "images/fnaf4.png"
   },
   {
-	"name": "Five Nights at Freddy's: Sister Location",
+    "name": "Five Nights at Freddy's: Sister Location",
     "fontSize": 13,
     "link": "https://ubg98.github.io/FNAF5",
     "image": "images/fnaf5.png"
@@ -863,4 +863,4 @@
     "link": "https://cornandbutter.github.io/webretro/index.html?core=snes9x&rom=smworld.smc",
     "image": "images/smworld.jpg"
   }
-
+]
