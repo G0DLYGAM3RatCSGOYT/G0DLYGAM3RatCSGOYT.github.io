@@ -798,6 +798,18 @@
     "image": "images/fnaf5.png"
   },
   {
+    "name": "Masked Forces",
+    "fontSize": 16,
+    "link": "gamesfromohio.github.io/MASKED-FORCES/",
+    "image": "images/masked-forces.png"
+  },
+  {
+    "name": "Bullet Force",
+    "fontSize": 16,
+    "link": "gamesfromohio.github.io/BULLET-FORCE/",
+    "image": "images/bullet-force.png"
+  },
+  {
     "name": "Five Nights at Freddy's: UCN",
     "fontSize": 12,
     "link": "https://cornandbutter.github.io/fnaf/ucn/index.html",
